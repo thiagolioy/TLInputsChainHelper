@@ -9,10 +9,15 @@
 #import <Foundation/Foundation.h>
 #import "AccessoryInputToolBar.h"
 
+typedef void (^ShowKeyboardCustomActionBlock)();
+typedef void (^HideKeyboardCustomActionBlock)();
 typedef void (^DoneActionBlock)();
 @interface TLInputsChainHelper : NSObject<AccessoryInputToolBarDelegate>
 
+@property(nonatomic, copy) ShowKeyboardCustomActionBlock showKeyboardCustomActionBlock;
+@property(nonatomic, copy) HideKeyboardCustomActionBlock hideKeyboardCustomActionBlock;
 @property(nonatomic, copy) DoneActionBlock doneActionBlock;
+
 @property(nonatomic,strong)UITextField *currentTextField;
 @property(nonatomic,assign)NSInteger keyboardAndTextfieldPadding;
 

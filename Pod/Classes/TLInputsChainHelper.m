@@ -85,17 +85,24 @@
      fromBehindKeyboard:kbFrame
   onContainerScrollView:_containerScrollview
             withPadding:_keyboardAndTextfieldPadding];
+    if(_showKeyboardCustomActionBlock)
+        _showKeyboardCustomActionBlock();
     
 }
 
 -(void)keyboardDidHide:(NSNotification *)notification {
     [_containerScrollview setContentOffset:CGPointZero animated:YES];
+    if(_hideKeyboardCustomActionBlock)
+        _hideKeyboardCustomActionBlock();
 }
 
 
 -(void)showTextField:(UITextField*)textField fromBehindKeyboard:(CGRect)kbFrame
 onContainerScrollView:(UIScrollView *)scrollView
           withPadding:(NSInteger)padding{
+    
+    if(!textField || ![textField isFirstResponder])
+        return;
     
     CGRect textFieldFrame = [scrollView convertRect:textField.frame fromView:scrollView];
     
