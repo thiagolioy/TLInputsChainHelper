@@ -10,19 +10,12 @@
 Pod::Spec.new do |s|
   s.name             = "TLInputsChainHelper"
   s.version          = "0.1.0"
-  s.summary          = "A short description of TLInputsChainHelper."
-  s.description      = <<-DESC
-                       An optional longer description of TLInputsChainHelper
-
-                       * Markdown format.
-                       * Don't worry about the indent, we strip it!
-                       DESC
-  s.homepage         = "https://github.com/<GITHUB_USERNAME>/TLInputsChainHelper"
-  # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
+  s.summary          = "Chain your textfields and handle interaction and focus with TLInputsChainHelper."
+  s.homepage         = "https://github.com/thiagolioy/TLInputsChainHelper"
   s.license          = 'MIT'
   s.author           = { "Thiago Lioy" => "lioyufrj@gmail.com" }
-  s.source           = { :git => "https://github.com/<GITHUB_USERNAME>/TLInputsChainHelper.git", :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.source           = { :git => "https://github.com/thiagolioy/TLInputsChainHelper.git", :tag => s.version.to_s }
+  s.social_media_url = 'https://twitter.com/tplioy'
 
   s.platform     = :ios, '7.0'
   s.requires_arc = true
@@ -32,7 +25,5 @@ Pod::Spec.new do |s|
     'TLInputsChainHelper' => ['Pod/Assets/*.png']
   }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.public_header_files = 'Pod/Classes/**/*.h'
 end
