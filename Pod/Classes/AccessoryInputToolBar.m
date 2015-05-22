@@ -87,6 +87,13 @@
     return flexibleSeparator;
 }
 
+-(void)setAccessoryButtonsTintColor:(UIColor *)accessoryButtonsTintColor{
+    _accessoryButtonsTintColor = accessoryButtonsTintColor;
+    self.doneButton.tintColor = _accessoryButtonsTintColor;
+    self.nextField.tintColor = _accessoryButtonsTintColor;
+    self.previousField.tintColor = _accessoryButtonsTintColor;
+}
+
 - (void) setDoneButtonTitle:(NSString *)title {
     self.doneButton.title = title;
 }

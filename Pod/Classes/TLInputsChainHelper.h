@@ -14,14 +14,26 @@ typedef void (^DoneActionBlock)();
 
 @property(nonatomic, copy) DoneActionBlock doneActionBlock;
 @property(nonatomic,strong)UITextField *currentTextField;
+@property(nonatomic,assign)NSInteger keyboardAndTextfieldPadding;
 
-+(TLInputsChainHelper*)helperForView:(UIView*)view withTextFields:(NSArray *)textFields;
-+(BOOL)findAndResignFirstResponder:(UIView *)view;
+@property(nonatomic,strong)UIColor *toolbarButtonsTintColor;
+@property(nonatomic,strong)NSString *toolbarDoneButtonTitle;
+@property(nonatomic,strong)NSString *toolbarNextButtonTitle;
+@property(nonatomic,strong)NSString *toolbarPreviousButtonTitle;
 
++(TLInputsChainHelper*)chainTextFields:(NSArray *)textFields
+                                onView:(UIView*)view
+                          withDelegate:(id<UITextFieldDelegate>)delegate
+                           withToolbar:(BOOL)toolbar
+                         andDismissTap:(BOOL)dismissTap;
 
 -(void)addBackgroundTapGesture;
 -(void)addToolBar;
 
--(void)setTextFieldsTag:(NSInteger)tag;
--(void)setTextFieldsDelegate:(id<UITextFieldDelegate>)delegate;
+-(void)addRequestedFocusNotificationsOnScrollView:(UIScrollView*)scrollview;
+-(void)removeRequestedFocusNotificationsOnScrollView;
+
+-(BOOL)shouldReturn:(UITextField *)textField;
+-(void)didBeginEditing:(UITextField *)textField;
+-(void)didEndEditing:(UITextField *)textField;
 @end
