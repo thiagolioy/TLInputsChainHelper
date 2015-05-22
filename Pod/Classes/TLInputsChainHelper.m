@@ -48,11 +48,19 @@
 
 
 
--(void)addBackgroundTapGesture {
-    UITapGestureRecognizer *tapBackground = [[UITapGestureRecognizer alloc] initWithTarget:_viewBeeingHelped action:@selector(tappedBackground:)];
-    tapBackground.cancelsTouchesInView = NO;
-    [_viewBeeingHelped addGestureRecognizer:tapBackground];
+-(void)addBackgroundTapGesture{
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    
+    [_viewBeeingHelped addGestureRecognizer:tap];
 }
+
+- (void) dismissKeyboard
+{
+    [TLInputsChainHelper findAndResignFirstResponder:_viewBeeingHelped];
+}
+
 
 -(void)addToolBar {
     AccessoryInputToolBar *formToolbar = [[AccessoryInputToolBar alloc] initWithDelegate:self];
@@ -101,8 +109,4 @@
         [nextTextField becomeFirstResponder];
 }
 
-
--(void)tappedBackground:(UITapGestureRecognizer *)gestureRecognizer {
-    [TLInputsChainHelper findAndResignFirstResponder:_viewBeeingHelped];
-}
 @end
