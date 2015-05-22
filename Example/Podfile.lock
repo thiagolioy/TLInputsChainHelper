@@ -23,6 +23,6 @@ SPEC CHECKSUMS:
   Expecta+Snapshots: 40c5ec43b43da3bae957f14fed5dc9177d08ec8b
   FBSnapshotTestCase: 9d5fe43b29ae3a0ed8fc829477971b281038f748
   Specta: 96fe05fe5c7348b5223f85e862904f6e832abb14
-  TLInputsChainHelper: 1dd6e06cbc9def67ea034de9d7bb2ede431c94ad
+  TLInputsChainHelper: eb2d69770a8b68ecced40760963eea729f20b177
 
 COCOAPODS: 0.36.4
