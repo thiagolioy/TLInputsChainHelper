@@ -53,6 +53,11 @@
         tf.delegate = delegate;
 }
 
+-(void)removeTextFieldsDelegate{
+    for(UITextField *tf in _textFields)
+        tf.delegate = nil;
+}
+
 +(BOOL)findAndResignFirstResponder:(UIView *)view {
     if (view.isFirstResponder) {
         [view resignFirstResponder];
@@ -260,12 +265,10 @@ onContainerScrollView:(UIScrollView *)scrollView
         return;
     }
     
-    if(_currentTextField == [_textFields lastObject]){
-        [TLInputsChainHelper findAndResignFirstResponder:_currentTextField];
-        if(_doneActionBlock)
-            _doneActionBlock();
-    }else
-        [self nextButtonWasPressed:nil];
+    [TLInputsChainHelper findAndResignFirstResponder:_currentTextField];
+    if(_doneActionBlock)
+        _doneActionBlock();
+    
 }
 
 
