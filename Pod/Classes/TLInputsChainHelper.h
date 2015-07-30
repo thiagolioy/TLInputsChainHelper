@@ -12,6 +12,9 @@
 typedef void (^ShowKeyboardCustomActionBlock)();
 typedef void (^HideKeyboardCustomActionBlock)();
 typedef void (^DoneActionBlock)();
+
+typedef void (^ActionBlockForField)();
+
 @interface TLInputsChainHelper : NSObject<AccessoryInputToolBarDelegate>
 
 @property(nonatomic, copy) ShowKeyboardCustomActionBlock showKeyboardCustomActionBlock;
@@ -41,4 +44,7 @@ typedef void (^DoneActionBlock)();
 -(BOOL)shouldReturn:(UITextField *)textField;
 -(void)didBeginEditing:(UITextField *)textField;
 -(void)didEndEditing:(UITextField *)textField;
+
+-(void)setToolbarDoneButtonTitle:(NSString *)title forField:(UITextField*) field;
+-(void)triggerOnField:(UITextField*)field actionBlock:(ActionBlockForField) block;
 @end

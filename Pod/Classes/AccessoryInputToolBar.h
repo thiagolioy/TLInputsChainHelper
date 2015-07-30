@@ -26,6 +26,8 @@
 
 - (id)initWithDelegate:(id<AccessoryInputToolBarDelegate>)delegate;
 
+- (NSString*) doneButtonTitle;
+
 - (void) setDoneButtonTitle:(NSString *)title;
 - (void) setPreviousButtonTitle:(NSString *)title;
 - (void) setNextButtonTitle:(NSString *)title;

@@ -48,13 +48,28 @@
     [_inputsChainHelper addRequestedFocusNotificationsOnScrollView:_containerScrollView];
     
     
-    _inputsChainHelper.toolbarPreviousButtonTitle = @"<";
-    _inputsChainHelper.toolbarNextButtonTitle = @">";
+    _inputsChainHelper.toolbarPreviousButtonTitle = @"Anterior";
+    _inputsChainHelper.toolbarNextButtonTitle = @"Proximo";
     
-    _inputsChainHelper.toolbarButtonsTintColor = [UIColor blackColor];
+//        _inputsChainHelper.toolbarDoneButtonTitle = @"OK";
+
+    [_inputsChainHelper setToolbarDoneButtonTitle:@"Novo Titulo" forField:_textfield2];
+    
+    _inputsChainHelper.toolbarButtonsTintColor = [UIColor redColor];
     
     _inputsChainHelper.doneActionBlock = ^{
         NSLog(@"call DoneAction from block");
+    };
+    
+    [_inputsChainHelper triggerOnField:_textfield2 actionBlock:^{
+        NSLog(@"call actionField from block");
+    }];
+    
+    _inputsChainHelper.showKeyboardCustomActionBlock = ^{
+
+    };
+    
+    _inputsChainHelper.hideKeyboardCustomActionBlock = ^{
     };
 }
 

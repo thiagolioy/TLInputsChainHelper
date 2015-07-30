@@ -132,4 +132,8 @@
     }
 }
 
+- (NSString*) doneButtonTitle{
+    return self.doneButton.title;
+}
+
 @end

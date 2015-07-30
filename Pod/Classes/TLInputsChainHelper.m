@@ -14,6 +14,16 @@
 @property(nonatomic,strong)NSArray *textFields;
 @property(nonatomic,strong)UIScrollView *containerScrollview;
 
+@property(nonatomic,strong)UITextField *actionField;
+
+@property(nonatomic,strong)UITextField *differentToolbarDoneTitleField;
+@property(nonatomic,strong)NSString *differentToolbarDoneTitle;
+@property(nonatomic,strong)NSString *defaultToolbarDoneTitle;
+
+@property(nonatomic, copy) ActionBlockForField actionBlock;
+
+@property(nonatomic,strong) AccessoryInputToolBar *formToolbar;
+
 @end
 
 @implementation TLInputsChainHelper
@@ -159,20 +169,32 @@ onContainerScrollView:(UIScrollView *)scrollView
 
 
 -(void)addToolBar {
-    AccessoryInputToolBar *formToolbar = [[AccessoryInputToolBar alloc] initWithDelegate:self];
+    _formToolbar = [[AccessoryInputToolBar alloc] initWithDelegate:self];
     
     if(_toolbarDoneButtonTitle && _toolbarDoneButtonTitle.length > 0)
-        [formToolbar setDoneButtonTitle:_toolbarDoneButtonTitle];
+        [_formToolbar setDoneButtonTitle:_toolbarDoneButtonTitle];
     if(_toolbarNextButtonTitle && _toolbarNextButtonTitle.length > 0)
-        [formToolbar setNextButtonTitle:_toolbarNextButtonTitle];
+        [_formToolbar setNextButtonTitle:_toolbarNextButtonTitle];
     if(_toolbarPreviousButtonTitle && _toolbarPreviousButtonTitle.length > 0)
-        [formToolbar setPreviousButtonTitle:_toolbarPreviousButtonTitle];
+        [_formToolbar setPreviousButtonTitle:_toolbarPreviousButtonTitle];
     
     if(_toolbarButtonsTintColor)
-        formToolbar.accessoryButtonsTintColor = _toolbarButtonsTintColor;
-        
+        _formToolbar.accessoryButtonsTintColor = _toolbarButtonsTintColor;
+    
+    _defaultToolbarDoneTitle = _formToolbar.doneButtonTitle;
+    
     for(UITextField *tf in _textFields)
-        tf.inputAccessoryView = formToolbar;
+        tf.inputAccessoryView = _formToolbar;
+}
+
+-(void)triggerOnField:(UITextField*)field actionBlock:(ActionBlockForField) block{
+    _actionField = field;
+    _actionBlock = block;
+}
+
+-(void)setToolbarDoneButtonTitle:(NSString *)title forField:(UITextField*) field{
+    _differentToolbarDoneTitle = title;
+    _differentToolbarDoneTitleField = field;
 }
 
 #pragma mark - TextFieldDelegate HelperMethods
@@ -184,6 +206,7 @@ onContainerScrollView:(UIScrollView *)scrollView
 
 -(void)didBeginEditing:(UITextField *)textField {
     _currentTextField = textField;
+    [self setupToolbarForField:_currentTextField];
 }
 
 -(void)didEndEditing:(UITextField *)textField {
@@ -221,7 +244,22 @@ onContainerScrollView:(UIScrollView *)scrollView
         [nextTextField becomeFirstResponder];
 }
 
+-(void)setupToolbarForField:(UITextField*)field{
+    if(field == _differentToolbarDoneTitleField)
+        [_formToolbar setDoneButtonTitle:_differentToolbarDoneTitle];
+    else
+        [_formToolbar setDoneButtonTitle:_defaultToolbarDoneTitle];
+}
+
 -(void)doneButtonWasPressed{
+    
+    if(_currentTextField == _actionField){
+        [TLInputsChainHelper findAndResignFirstResponder:_currentTextField];
+        if(_actionBlock)
+            _actionBlock();
+        return;
+    }
+    
     if(_currentTextField == [_textFields lastObject]){
         [TLInputsChainHelper findAndResignFirstResponder:_currentTextField];
         if(_doneActionBlock)
