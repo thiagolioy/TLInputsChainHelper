@@ -35,6 +35,7 @@ typedef void (^ActionBlockForField)();
                            withToolbar:(BOOL)toolbar
                          andDismissTap:(BOOL)dismissTap;
 
+-(void)removeTextFieldsDelegate;
 -(void)addBackgroundTapGesture;
 -(void)addToolBar;
 
