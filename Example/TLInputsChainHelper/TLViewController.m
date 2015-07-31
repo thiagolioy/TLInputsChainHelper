@@ -57,6 +57,8 @@
     
     _inputsChainHelper.toolbarButtonsTintColor = [UIColor redColor];
     
+    _inputsChainHelper.doneButtonBehavior = ResignOnClick;
+    
     _inputsChainHelper.doneActionBlock = ^{
         NSLog(@"call DoneAction from block");
     };

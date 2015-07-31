@@ -35,6 +35,7 @@
                                withToolbar:(BOOL)toolbar
                             andDismissTap:(BOOL)dismissTap{
     TLInputsChainHelper *helper = [TLInputsChainHelper new];
+    helper.doneButtonBehavior = MoveToNextField;
     helper.viewBeeingHelped = view;
     helper.textFields = textFields;
     [helper setTextFieldsDelegate:delegate];
@@ -258,18 +259,45 @@ onContainerScrollView:(UIScrollView *)scrollView
 
 -(void)doneButtonWasPressed{
     
-    if(_currentTextField == _actionField){
+    BOOL needed = [self triggerActionForFieldIfNeeded];
+    if(needed)return;
+    
+    if(self.doneButtonBehavior == MoveToNextField)
+        [self doneButtonWithNextBehavior];
+    else
+        [self doneButtonWithResignOnClickBehavior];
+}
+
+
+-(BOOL)triggerActionForFieldIfNeeded{
+    BOOL needed = _currentTextField == _actionField;
+    
+    if(needed){
         [TLInputsChainHelper findAndResignFirstResponder:_currentTextField];
         if(_actionBlock)
             _actionBlock();
-        return;
     }
     
-    [TLInputsChainHelper findAndResignFirstResponder:_currentTextField];
-    if(_doneActionBlock)
+    return needed;
+}
+
+-(void)doneButtonWithResignOnClickBehavior{
+    if(_currentTextField == [_textFields lastObject] && _doneActionBlock)
         _doneActionBlock();
     
+    [TLInputsChainHelper findAndResignFirstResponder:_currentTextField];
 }
+
+-(void)doneButtonWithNextBehavior{
+
+    if(_currentTextField == [_textFields lastObject]){
+        [TLInputsChainHelper findAndResignFirstResponder:_currentTextField];
+        if(_doneActionBlock)
+            _doneActionBlock();
+    }else
+        [self nextButtonWasPressed:nil];
+}
+
 
 
 

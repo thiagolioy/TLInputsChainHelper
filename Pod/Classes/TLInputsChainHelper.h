@@ -15,6 +15,12 @@ typedef void (^DoneActionBlock)();
 
 typedef void (^ActionBlockForField)();
 
+
+typedef NS_ENUM(NSInteger, DoneButtonBehavior) {
+    MoveToNextField,
+    ResignOnClick
+};
+
 @interface TLInputsChainHelper : NSObject<AccessoryInputToolBarDelegate>
 
 @property(nonatomic, copy) ShowKeyboardCustomActionBlock showKeyboardCustomActionBlock;
@@ -28,6 +34,8 @@ typedef void (^ActionBlockForField)();
 @property(nonatomic,strong)NSString *toolbarDoneButtonTitle;
 @property(nonatomic,strong)NSString *toolbarNextButtonTitle;
 @property(nonatomic,strong)NSString *toolbarPreviousButtonTitle;
+
+@property(nonatomic,assign)DoneButtonBehavior doneButtonBehavior;
 
 +(TLInputsChainHelper*)chainTextFields:(NSArray *)textFields
                                 onView:(UIView*)view
