@@ -2,7 +2,7 @@
 //  TLInputsChainHelper.m
 //  Pods
 //
-//  Created by Thiago Lioy on 5/21/15.
+//  Created by Itau on 5/21/15.
 //
 //
 
@@ -31,7 +31,7 @@
 
 +(TLInputsChainHelper*)chainTextFields:(NSArray *)textFields
                                 onView:(UIView*)view
-                          withDelegate:(id<UITextFieldDelegate>)delegate
+                          withDelegate:(id<UITextFieldDelegate,UITextViewDelegate>)delegate
                                withToolbar:(BOOL)toolbar
                             andDismissTap:(BOOL)dismissTap{
     TLInputsChainHelper *helper = [TLInputsChainHelper new];
@@ -49,7 +49,7 @@
 }
 
 
--(void)setTextFieldsDelegate:(id<UITextFieldDelegate>)delegate{
+-(void)setTextFieldsDelegate:(id<UITextFieldDelegate,UITextViewDelegate>)delegate{
     for(UITextField *tf in _textFields)
         tf.delegate = delegate;
 }
@@ -216,6 +216,16 @@ onContainerScrollView:(UIScrollView *)scrollView
 }
 
 -(void)didEndEditing:(UITextField *)textField {
+    _currentTextField = nil;
+    
+}
+
+-(void)textViewDidBeginEditing:(UITextView *)textView {
+    _currentTextField = textView;
+    [self setupToolbarForField:_currentTextField];
+}
+
+-(void)textViewDidEndEditing:(UITextView *)textView {
     _currentTextField = nil;
     
 }
