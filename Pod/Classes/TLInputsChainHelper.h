@@ -39,9 +39,9 @@ typedef NS_ENUM(NSInteger, DoneButtonBehavior) {
 
 +(TLInputsChainHelper*)chainTextFields:(NSArray *)textFields
                                 onView:(UIView*)view
-                          withDelegate:(id<UITextFieldDelegate>)delegate
-                           withToolbar:(BOOL)toolbar
-                         andDismissTap:(BOOL)dismissTap;
+                          withDelegate:(id<UITextFieldDelegate,UITextViewDelegate>)delegate
+                               withToolbar:(BOOL)toolbar
+                            andDismissTap:(BOOL)dismissTap;
 
 -(void)removeTextFieldsDelegate;
 -(void)addBackgroundTapGesture;
@@ -56,4 +56,8 @@ typedef NS_ENUM(NSInteger, DoneButtonBehavior) {
 
 -(void)setToolbarDoneButtonTitle:(NSString *)title forField:(UITextField*) field;
 -(void)triggerOnField:(UITextField*)field actionBlock:(ActionBlockForField) block;
+
+-(void)textViewDidBeginEditing:(UITextView *)textView;
+-(void)textViewDidEndEditing:(UITextView *)textView;
+
 @end
