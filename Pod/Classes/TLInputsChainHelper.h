@@ -12,6 +12,7 @@
 typedef void (^ShowKeyboardCustomActionBlock)();
 typedef void (^HideKeyboardCustomActionBlock)();
 typedef void (^DoneActionBlock)();
+typedef void (^DidTapViewActionBlock)();
 
 typedef void (^ActionBlockForField)();
 
@@ -26,6 +27,7 @@ typedef NS_ENUM(NSInteger, DoneButtonBehavior) {
 @property(nonatomic, copy) ShowKeyboardCustomActionBlock showKeyboardCustomActionBlock;
 @property(nonatomic, copy) HideKeyboardCustomActionBlock hideKeyboardCustomActionBlock;
 @property(nonatomic, copy) DoneActionBlock doneActionBlock;
+@property(nonatomic, copy) DidTapViewActionBlock didTapViewActionBlock;
 
 @property(nonatomic,strong)UITextField *currentTextField;
 @property(nonatomic,assign)NSInteger keyboardAndTextfieldPadding;
@@ -42,6 +44,13 @@ typedef NS_ENUM(NSInteger, DoneButtonBehavior) {
                           withDelegate:(id<UITextFieldDelegate,UITextViewDelegate>)delegate
                                withToolbar:(BOOL)toolbar
                             andDismissTap:(BOOL)dismissTap;
+
++(TLInputsChainHelper*)chainTextFields:(NSArray *)textFields
+                                onView:(UIView*)view
+                          withDelegate:(id<UITextFieldDelegate,UITextViewDelegate>)delegate
+                           withToolbar:(BOOL)toolbar
+                         andDismissTap:(BOOL)dismissTap
+                      didTapViewAction:(DidTapViewActionBlock)didTapView;
 
 -(void)removeTextFieldsDelegate;
 -(void)addBackgroundTapGesture;

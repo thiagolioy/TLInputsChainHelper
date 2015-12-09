@@ -34,8 +34,20 @@
                           withDelegate:(id<UITextFieldDelegate,UITextViewDelegate>)delegate
                                withToolbar:(BOOL)toolbar
                             andDismissTap:(BOOL)dismissTap{
+
+    return [self chainTextFields:textFields onView:view withDelegate:delegate withToolbar:toolbar andDismissTap:dismissTap didTapViewAction:nil];
+}
+
++(TLInputsChainHelper*)chainTextFields:(NSArray *)textFields
+                                onView:(UIView*)view
+                          withDelegate:(id<UITextFieldDelegate,UITextViewDelegate>)delegate
+                           withToolbar:(BOOL)toolbar
+                         andDismissTap:(BOOL)dismissTap
+                      didTapViewAction:(DidTapViewActionBlock)didTapView{
+    
     TLInputsChainHelper *helper = [TLInputsChainHelper new];
     helper.doneButtonBehavior = MoveToNextField;
+    helper.didTapViewActionBlock = didTapView;
     helper.viewBeeingHelped = view;
     helper.textFields = textFields;
     [helper setTextFieldsDelegate:delegate];
@@ -145,6 +157,9 @@ onContainerScrollView:(UIScrollView *)scrollView
                                    action:@selector(dismissKeyboard)];
     
     [_viewBeeingHelped addGestureRecognizer:tap];
+    
+    if(_didTapViewActionBlock)
+        _didTapViewActionBlock();
 }
 
 -(void)dismissKeyboard

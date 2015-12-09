@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "TLInputsChainHelper"
-  s.version          = "0.1.1"
+  s.version          = "0.1.2"
   s.summary          = "Chain your textfields and handle interaction and focus with TLInputsChainHelper."
   s.homepage         = "https://github.com/thiagolioy/TLInputsChainHelper"
   s.license          = 'MIT'
