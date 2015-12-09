@@ -157,14 +157,14 @@ onContainerScrollView:(UIScrollView *)scrollView
                                    action:@selector(dismissKeyboard)];
     
     [_viewBeeingHelped addGestureRecognizer:tap];
-    
-    if(_didTapViewActionBlock)
-        _didTapViewActionBlock();
 }
 
 -(void)dismissKeyboard
 {
     [TLInputsChainHelper findAndResignFirstResponder:_viewBeeingHelped];
+    
+    if(_didTapViewActionBlock)
+        _didTapViewActionBlock();
 }
 
 
