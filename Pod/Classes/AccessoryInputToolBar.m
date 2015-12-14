@@ -62,6 +62,7 @@
                                                       target:self
                                                       action:@selector(doneButtonWasPressed)];
     self.doneButton.tintColor = _accessoryButtonsTintColor;
+    self.doneButton.accessibilityIdentifier = @"KEYBOARD_OK_BUTTON";
 }
 
 - (void) initializePreviousFieldButton {
@@ -70,6 +71,7 @@
                                                          target:self
                                                          action:@selector(goToPreviousField:)];
     self.previousField.tintColor = _accessoryButtonsTintColor;
+    self.previousField.accessibilityIdentifier = @"KEYBOARD_NEXT_BUTTON";
 }
 
 - (void) initializeNextFieldButton {
@@ -78,6 +80,7 @@
                                                      target:self
                                                      action:@selector(goToNextField:)];
     self.nextField.tintColor = _accessoryButtonsTintColor;
+    self.nextField.accessibilityIdentifier = @"KEYBOAR_PREVIOUS_BUTTON";
 }
 
 - (UIBarButtonItem *) flexibleSeparator {
