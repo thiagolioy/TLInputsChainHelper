@@ -57,7 +57,7 @@
 }
 
 - (void) initializeDoneButton {
-    self.doneButton = [[UIBarButtonItem alloc] initWithTitle:@"OK"
+    self.doneButton = [[UIBarButtonItem alloc] initWithTitle:@"ok"
                                                        style:UIBarButtonItemStyleDone
                                                       target:self
                                                       action:@selector(doneButtonWasPressed)];
