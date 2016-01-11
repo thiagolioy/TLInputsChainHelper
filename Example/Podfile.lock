@@ -5,7 +5,7 @@ PODS:
     - FBSnapshotTestCase (= 1.6)
   - FBSnapshotTestCase (1.6)
   - Specta (1.0.0)
-  - TLInputsChainHelper (0.1.4)
+  - TLInputsChainHelper (0.1.5)
 
 DEPENDENCIES:
   - Expecta
@@ -23,6 +23,6 @@ SPEC CHECKSUMS:
   Expecta+Snapshots: 40c5ec43b43da3bae957f14fed5dc9177d08ec8b
   FBSnapshotTestCase: 9d5fe43b29ae3a0ed8fc829477971b281038f748
   Specta: 96fe05fe5c7348b5223f85e862904f6e832abb14
-  TLInputsChainHelper: 3ff85c4c39a06365c8332cef8e8276b8f6932394
+  TLInputsChainHelper: 642c88bcb5ad00677f346d34ca7ab65b9221a3da
 
 COCOAPODS: 0.39.0
