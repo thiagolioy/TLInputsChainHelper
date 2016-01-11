@@ -119,7 +119,7 @@
 }
 
 -(void)keyboardDidHide:(NSNotification *)notification {
-    [_containerScrollview setContentOffset:CGPointZero animated:YES];
+//    [_containerScrollview setContentOffset:CGPointZero animated:YES];
     if(_hideKeyboardCustomActionBlock)
         _hideKeyboardCustomActionBlock();
 }
