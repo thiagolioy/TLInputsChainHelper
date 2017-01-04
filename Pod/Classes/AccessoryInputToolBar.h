@@ -32,6 +32,10 @@
 - (void) setPreviousButtonTitle:(NSString *)title;
 - (void) setNextButtonTitle:(NSString *)title;
 
+- (void) setNextButtonTitle:(NSString *)title withAccessibilityLabel:(NSString *)label;
+- (void) setPreviousButtonTitle:(NSString *)title withAccessibilityLabel:(NSString *)label;
+- (void) setDoneButtonTitle:(NSString *)title withAccessibilityLabel:(NSString *)label;
+
 - (void) hideTextFieldHighlighters;
 - (void) showTextFieldHighlighters;
 
