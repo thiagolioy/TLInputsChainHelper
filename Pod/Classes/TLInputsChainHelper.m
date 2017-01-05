@@ -192,12 +192,32 @@ onContainerScrollView:(UIScrollView *)scrollView
 -(void)addToolBar {
     _formToolbar = [[AccessoryInputToolBar alloc] initWithDelegate:self];
     
-    if(_toolbarDoneButtonTitle && _toolbarDoneButtonTitle.length > 0)
-        [_formToolbar setDoneButtonTitle:_toolbarDoneButtonTitle];
-    if(_toolbarNextButtonTitle && _toolbarNextButtonTitle.length > 0)
-        [_formToolbar setNextButtonTitle:_toolbarNextButtonTitle];
-    if(_toolbarPreviousButtonTitle && _toolbarPreviousButtonTitle.length > 0)
-        [_formToolbar setPreviousButtonTitle:_toolbarPreviousButtonTitle];
+    if(_toolbarDoneButtonTitle && _toolbarDoneButtonTitle.length > 0) {
+        if(_doneButtonAccessibilityLabel && _doneButtonAccessibilityLabel.length > 0) {
+            [_formToolbar setDoneButtonTitle:_toolbarDoneButtonTitle
+                      withAccessibilityLabel:_doneButtonAccessibilityLabel];
+        } else {
+            [_formToolbar setDoneButtonTitle:_toolbarDoneButtonTitle];
+        }
+    }
+    
+    if(_toolbarNextButtonTitle && _toolbarNextButtonTitle.length > 0) {
+        if(_nextButtonAccessibilityLabel && _nextButtonAccessibilityLabel.length > 0) {
+            [_formToolbar setNextButtonTitle:_toolbarNextButtonTitle
+                      withAccessibilityLabel:_nextButtonAccessibilityLabel];
+        } else {
+            [_formToolbar setNextButtonTitle:_toolbarNextButtonTitle];
+        }
+    }
+    
+    if(_toolbarPreviousButtonTitle && _toolbarPreviousButtonTitle.length > 0) {
+        if(_previousButtonAccessibilityLabel && _previousButtonAccessibilityLabel.length > 0) {
+            [_formToolbar setPreviousButtonTitle:_toolbarPreviousButtonTitle
+                          withAccessibilityLabel: _previousButtonAccessibilityLabel];
+        } else {
+            [_formToolbar setPreviousButtonTitle:_toolbarPreviousButtonTitle];
+        }
+    }
     
     if(_toolbarButtonsTintColor)
         _formToolbar.accessoryButtonsTintColor = _toolbarButtonsTintColor;

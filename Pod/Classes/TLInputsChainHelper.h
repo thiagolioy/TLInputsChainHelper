@@ -37,6 +37,10 @@ typedef NS_ENUM(NSInteger, DoneButtonBehavior) {
 @property(nonatomic,strong)NSString *toolbarNextButtonTitle;
 @property(nonatomic,strong)NSString *toolbarPreviousButtonTitle;
 
+@property(nonatomic,strong)NSString *previousButtonAccessibilityLabel;
+@property(nonatomic,strong)NSString *nextButtonAccessibilityLabel;
+@property(nonatomic,strong)NSString *doneButtonAccessibilityLabel;
+
 @property(nonatomic,assign)DoneButtonBehavior doneButtonBehavior;
 
 +(TLInputsChainHelper*)chainTextFields:(NSArray *)textFields

@@ -109,6 +109,21 @@
     self.nextField.title = title;
 }
 
+- (void) setNextButtonTitle:(NSString *)title withAccessibilityLabel:(NSString *)label {
+    self.nextField.title = title;
+    self.nextField.accessibilityLabel = label;
+}
+
+- (void) setPreviousButtonTitle:(NSString *)title withAccessibilityLabel:(NSString *)label {
+    self.previousField.title = title;
+    self.previousField.accessibilityLabel = label;
+}
+
+- (void) setDoneButtonTitle:(NSString *)title withAccessibilityLabel:(NSString *)label {
+    self.doneButton.title = title;
+    self.doneButton.accessibilityLabel = label;
+}
+
 - (void)hideTextFieldHighlighters {
     [self setItems:@[[self flexibleSeparator], self.doneButton]];
 }
